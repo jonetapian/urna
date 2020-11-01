@@ -1,11 +1,10 @@
 class Urna:
-    def __init__(self, codigo_u, estado_federativo, munincipio, secao, zona, numero_secao, turno, data_homologacao, data_encerramento):
+    def __init__(self, codigo_u, estado_federativo, munincipio, zona, secao, turno, data_homologacao, data_encerramento):
         self.__codigo_u = codigo_u
         self.__estado_federativo = estado_federativo
         self.__munincipio = munincipio
-        self.__secao = secao
         self.__zona = zona
-        self.__numero_secao_eleitoral = numero_secao
+        self.__secao = secao
         self.__turno = turno
         self.__data_homologacao = data_homologacao
         self.__data_encerramento = data_encerramento
@@ -25,7 +24,6 @@ class Urna:
     @estado_federativo.setter
     def estado_federativo(self,estado_federativo):
         self.__estado_federativo = estado_federativo
-
     
     @property
     def munincipio(self):
@@ -34,15 +32,6 @@ class Urna:
     @munincipio.setter
     def munincipio(self,munincipio):
         self.__munincipio = munincipio
-    
-    
-    @property
-    def secao(self):
-        return self.__secao
-    
-    @secao.setter
-    def secao(self,secao):
-        self.__secao = secao
     
     @property
     def zona(self):
@@ -53,13 +42,13 @@ class Urna:
         self.zona = zona
 
     @property
-    def numero_secao_eleitoral(self):
-        return self.__numero_secao_eleitoral
-    
-    @numero_secao_eleitoral.setter
-    def numero_secao_eleitoral(self,numero_secao_eleitoral):
-        self.__numero_secao_eleitoral = numero_secao_eleitoral
-    
+    def secao(self):
+        return self.__secao
+
+    @secao.setter
+    def secao(self, secao):
+        self.__secao = secao
+
     @property
     def turno(self):
         return self.turno
