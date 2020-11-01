@@ -1,5 +1,5 @@
 from classes.Partido import Partido
-class PartidoController:
+class Partido_controller:
     def __init__(self):
         self.lista_partidos = []
     

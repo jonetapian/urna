@@ -1,5 +1,6 @@
 from classes.Urna import Urna
-class UrnaController:
+
+class Urna_controller:
     def __init__(self):
         self.lista_urnas = []
     
