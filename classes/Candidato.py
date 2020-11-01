@@ -1,7 +1,10 @@
-class Candidato():
+from classes.Pessoa import Pessoa
+
+class Candidato(Pessoa):
+
     def __init__(self, codigo_c, nome, codigo_partido, cargo):
+        super().__init__(nome)
         self.__codigo_c = codigo_c
-        self.__nome = nome
         self.__codigo_partido = codigo_partido
         self.__cargo = cargo
 
@@ -12,14 +15,6 @@ class Candidato():
     @codigo_c.setter
     def codigo_c(self, codigo_c):
         self.__codigo_c = codigo_c
-
-    @property
-    def nome(self):
-        return self.__nome
-
-    @nome.setter
-    def nome(self, nome):
-        self.__nome = nome
 
     @property
     def codigo_partido(self):

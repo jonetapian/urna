@@ -1,6 +1,7 @@
 from views.Urna_view import Urna_view
 from views.Partido_view import Partido_view
 from views.Candidato_view import Candidato_view
+from views.Eleitor_view import Eleitor_view
 from controllers.Geral_controller import Geral_controller
 
 class Menu_view:
@@ -10,6 +11,7 @@ class Menu_view:
         self.__urna_view = Urna_view(self.__geral_controller)
         self.__partido_view = Partido_view(self.__geral_controller)
         self.__candidato_view = Candidato_view(self.__geral_controller)
+        self.__eleitor_view = Eleitor_view(self.__geral_controller)
 
     def tela_opcoes(self):
         print("Escolha a opção")
@@ -28,7 +30,8 @@ class Menu_view:
             self.__partido_view.tela_opcoes_partido()
         elif (opcao_escolhida == 3):
             self.__candidato_view.tela_opcoes_candidato()
-
+        elif (opcao_escolhida == 4):
+            self.__eleitor_view.tela_opcoes_eleitor()
 
     def sair(self):
         exit(0)
@@ -64,3 +67,11 @@ class Menu_view:
     @candidato_view.setter
     def candidato_view(self, candidato_view):
         self.__candidato_view = candidato_view
+
+    @property
+    def eleitor_view(self):
+        return self.__eleitor_view
+
+    @eleitor_view.setter
+    def eleitor_view(self, eleitor_view):
+        self.__eleitor_view = eleitor_view
