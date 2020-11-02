@@ -1,17 +1,12 @@
-class Candidato_view:
+from views.Geral_view import Geral_view
+
+class Candidato_view(Geral_view):
 
     def __init__(self, geral_controller):
-        self.__geral_controller = geral_controller
+        super().__init__(geral_controller)
 
     def tela_opcoes_candidato(self):
-
-        print("Opções de Candidato")
-        print("1: Incluir")
-        print("2: Alterar")
-        print("3: Excluir")
-        print("4: Listar")
-
-        opcao_escolhida = int(input("Escolha a opção para Candidato: "))
+        opcao_escolhida = super().tela_opcoes_especifca("Candidato")
 
         if (opcao_escolhida == 1):
             self.incluir_candidato()
@@ -28,7 +23,7 @@ class Candidato_view:
         self.__texto_codigo_partido = int(input("Digite o código do partido do Candidato: "))
         self.__texto_cargo = (input("Digite o cargo do Candidato: "))
 
-        self.__geral_controller.candidato_controller.incluir_candidato(self.__texto_codigo_c, self.__texto_nome, self.__texto_codigo_partido,
+        super().geral_controller.candidato_controller.incluir_candidato(self.__texto_codigo_c, self.__texto_nome, self.__texto_codigo_partido,
                                                   self.__texto_cargo)
 
         print("-------- Candidato cadastrado com sucesso! --------")
@@ -40,7 +35,7 @@ class Candidato_view:
         self.__texto_codigo_partido = (input("Digite o código do partido do Candidato: "))
         self.__texto_cargo = (input("Digite o cargo do Candidato: "))
 
-        self.__geral_controller.candidato_controller.alterar_candidato(self.__texto_codigo_c_alteracao, self.__texto_nome, self.__texto_codigo_partido,
+        super().geral_controller.candidato_controller.alterar_candidato(self.__texto_codigo_c_alteracao, self.__texto_nome, self.__texto_codigo_partido,
                                                   self.__texto_cargo)
 
         print("------- Candidato alterado com sucesso! -------")
@@ -48,30 +43,22 @@ class Candidato_view:
     def excluir_candidato(self):
         self.__texto_codigo_c = int(input("Informe o código do Candidato a ser excluído: "))
 
-        self.__geral_controller.candidato_controller.excluir_candidato(self.__texto_codigo_c)
+        super().geral_controller.candidato_controller.excluir_candidato(self.__texto_codigo_c)
 
         print("------- Candidato excluído com sucesso! --------")
 
     def listar_candidatos(self):
-        lista_candidatos = self.__geral_controller.candidato_controller.listar_candidatos()
+        lista_candidatos = super().geral_controller.candidato_controller.listar_candidatos()
 
         print("-----------------")
         print("Listando candidatos cadastrados")
         for i in range(len(lista_candidatos)):
-            partido_candidato = self.__geral_controller.partido_controller.consultar_partido(lista_candidatos[i].codigo_partido)
+            partido_candidato = super().geral_controller.partido_controller.consultar_partido(lista_candidatos[i].codigo_partido)
 
             print("Código Candidato:", lista_candidatos[i].codigo_c, "Nome: " + lista_candidatos[i].nome,
                   "Sigla do Partido: " + partido_candidato.sigla, "Cargo do candidato: " + lista_candidatos[i].cargo)
 
         print("-----------------")
-
-    @property
-    def geral_controller(self):
-        return self.__geral_controller
-
-    @geral_controller.setter
-    def geral_controller(self, geral_controller):
-        self.__geral_controller = geral_controller
 
     @property
     def texto_codigo_c(self):

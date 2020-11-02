@@ -1,17 +1,12 @@
-class Urna_view:
+from views.Geral_view import Geral_view
+
+class Urna_view(Geral_view):
 
     def __init__(self, geral_controller):
-        self.__geral_controller = geral_controller
+        super().__init__(geral_controller)
 
     def tela_opcoes_urna(self):
-
-        print("Opções de Urna")
-        print("1: Incluir")
-        print("2: Alterar")
-        print("3: Excluir")
-        print("4: Listar")
-
-        opcao_escolhida = int(input("Escolha a opção para Urna: "))
+        opcao_escolhida = super().tela_opcoes_especifca("Urna")
 
         if (opcao_escolhida == 1):
             self.incluir_urna()
@@ -32,7 +27,7 @@ class Urna_view:
         self.__texto_data_homolgacao = (input("Digite a data da homolagação: "))
         self.__texto_data_encerramento = (input("Digite a data de encerramento: "))
 
-        self.__geral_controller.urna_controller.incluir_urna(self.__texto_codigo_u, self.__texto_estado_federativo, self.__texto_municipio,
+        super().geral_controller.urna_controller.incluir_urna(self.__texto_codigo_u, self.__texto_estado_federativo, self.__texto_municipio,
                                             self.__texto_zona_eleitoral, self.__texto_secao_eleitoral, self.__texto_turno,
                                             self.__texto_data_homolgacao, self.__texto_data_encerramento)
 
@@ -49,7 +44,7 @@ class Urna_view:
         self.__texto_data_homolgacao = (input("Digite a data da homolagação: "))
         self.__texto_data_encerramento = (input("Digite a data de encerramento: "))
 
-        self.__geral_controller.urna_controller.alterar_urna(self.__texto_codigo_u_alteracao, self.__texto_estado_federativo, self.__texto_municipio,
+        super().geral_controller.urna_controller.alterar_urna(self.__texto_codigo_u_alteracao, self.__texto_estado_federativo, self.__texto_municipio,
                                             self.__texto_zona_eleitoral, self.__texto_secao_eleitoral, self.__texto_turno, self.__texto_data_homolgacao,
                                             self.__texto_data_encerramento)
 
@@ -58,12 +53,12 @@ class Urna_view:
     def excluir_urna(self):
         self.__texto_codigo_u = int(input("Informe o código da urna a ser excluída: "))
 
-        self.__geral_controller.urna_controller.excluir_urna(self.__texto_codigo_u )
+        super().geral_controller.urna_controller.excluir_urna(self.__texto_codigo_u )
 
         print("------- Urna excluída com sucesso! --------")
 
     def listar_urnas(self):
-        lista_urnas = self.__geral_controller.urna_controller.listar_urnas()
+        lista_urnas = super().geral_controller.urna_controller.listar_urnas()
 
         print("-----------------")
         print("Listando Urnas cadastradas")
@@ -77,14 +72,6 @@ class Urna_view:
             print("Data da Homologação: " + lista_urnas[i].data_homolgacao)
             print("Data do Encerramento: " + lista_urnas[i].data_encerramento)
         print("-----------------")
-
-    @property
-    def geral_controller(self):
-        return self.__geral_controller
-
-    @geral_controller.setter
-    def geral_controller(self, geral_controller):
-        self.__geral_controller = geral_controller
 
     @property
     def texto_codigo_u(self):

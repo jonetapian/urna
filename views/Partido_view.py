@@ -1,17 +1,12 @@
-class Partido_view:
+from views.Geral_view import Geral_view
+
+class Partido_view(Geral_view):
 
     def __init__(self, geral_controller):
-        self.__geral_controller = geral_controller
+        super().__init__(geral_controller)
 
     def tela_opcoes_partido(self):
-
-        print("Opções de Partido")
-        print("1: Incluir")
-        print("2: Alterar")
-        print("3: Excluir")
-        print("4: Listar")
-
-        opcao_escolhida = int(input("Escolha a opção para Partido: "))
+        opcao_escolhida = super().tela_opcoes_especifca("Partido")
 
         if (opcao_escolhida == 1):
             self.incluir_partido()
@@ -28,7 +23,7 @@ class Partido_view:
         self.__texto_sigla = (input("Digite a sigla do Partido: "))
         self.__texto_numero = (input("Digite o número do Partido: "))
 
-        self.__geral_controller.partido_controller.incluir_partido(self.__texto_codigo_p, self.__texto_nome, self.__texto_sigla, self.__texto_numero)
+        super().geral_controller.partido_controller.incluir_partido(self.__texto_codigo_p, self.__texto_nome, self.__texto_sigla, self.__texto_numero)
 
         print("-------- Partido cadastrado com sucesso! --------")
 
@@ -39,7 +34,7 @@ class Partido_view:
         self.__texto_sigla = (input("Digite a sigla do Partido: "))
         self.__texto_numero = (input("Digite o número do Partido: "))
 
-        self.__geral_controller.partido_controller.alterar_partido(self.__texto_codigo_p_alteracao, self.__texto_nome, self.__texto_sigla,
+        super().geral_controller.partido_controller.alterar_partido(self.__texto_codigo_p_alteracao, self.__texto_nome, self.__texto_sigla,
                                                   self.__texto_numero)
 
         print("------- Partido alterado com sucesso! -------")
@@ -47,12 +42,12 @@ class Partido_view:
     def excluir_partido(self):
         self.__texto_codigo_p = int(input("Informe o código do Partido a ser excluído: "))
 
-        self.__geral_controller.partido_controller.excluir_partido(self.__texto_codigo_p)
+        super().geral_controller.partido_controller.excluir_partido(self.__texto_codigo_p)
 
         print("------- Partido excluído com sucesso! --------")
 
     def listar_partidos(self):
-        lista_partidos = self.__geral_controller.partido_controller.listar_partidos()
+        lista_partidos = super().geral_controller.partido_controller.listar_partidos()
 
         print("-----------------")
         print("Listando Partidos cadastrados")
@@ -61,14 +56,6 @@ class Partido_view:
                   "Sigla: " + lista_partidos[i].sigla, "Número do Partido:", lista_partidos[i].numero)
 
         print("-----------------")
-
-    @property
-    def geral_controller(self):
-        return self.__geral_controller
-
-    @geral_controller.setter
-    def geral_controller(self, geral_controller):
-        self.__geral_controller = geral_controller
 
     @property
     def texto_codigo_p(self):

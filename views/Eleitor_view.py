@@ -1,17 +1,12 @@
-class Eleitor_view:
+from views.Geral_view import Geral_view
+
+class Eleitor_view(Geral_view):
 
     def __init__(self, geral_controller):
-        self.__geral_controller = geral_controller
+        super().__init__(geral_controller)
 
     def tela_opcoes_eleitor(self):
-
-        print("Opções de Eleitor")
-        print("1: Incluir")
-        print("2: Alterar")
-        print("3: Excluir")
-        print("4: Listar")
-
-        opcao_escolhida = int(input("Escolha a opção para Eleitor: "))
+        opcao_escolhida = super().tela_opcoes_especifca("Eleitor")
 
         if (opcao_escolhida == 1):
             self.incluir_eleitor()
@@ -29,7 +24,7 @@ class Eleitor_view:
         self.__texto_numero_titulo = (input("Digite o número do título: "))
         self.__texto_secao_eleitoral = (input("Digite o número da Seção Eleitoral: "))
 
-        self.__geral_controller.eleitor_controller.incluir_eleitor(self.__texto_codigo_e, self.__texto_nome, self.__texto_nome_mae,
+        super().geral_controller.eleitor_controller.incluir_eleitor(self.__texto_codigo_e, self.__texto_nome, self.__texto_nome_mae,
                                                   self.__texto_numero_titulo, self.__texto_secao_eleitoral)
 
         print("-------- Eleitor cadastrado com sucesso! --------")
@@ -42,7 +37,7 @@ class Eleitor_view:
         self.__texto_numero_titulo = (input("Digite o número do título: "))
         self.__texto_secao_eleitoral = (input("Digite o número da Seção Eleitoral: "))
 
-        self.__geral_controller.eleitor_controller.alterar_eleitor(self.__texto_codigo_e_alteracao, self.__texto_nome, self.__texto_nome_mae,
+        super().geral_controller.eleitor_controller.alterar_eleitor(self.__texto_codigo_e_alteracao, self.__texto_nome, self.__texto_nome_mae,
                                                   self.__texto_numero_titulo, self.__texto_secao_eleitoral)
 
         print("------- Eleitor alterado com sucesso! -------")
@@ -50,12 +45,12 @@ class Eleitor_view:
     def excluir_eleitor(self):
         self.__texto_codigo_e = int(input("Informe o código do Eleitor a ser excluído: "))
 
-        self.__geral_controller.eleitor_controller.excluir_eleitor(self.__texto_codigo_e)
+        super().geral_controller.eleitor_controller.excluir_eleitor(self.__texto_codigo_e)
 
         print("------- Eleitor excluído com sucesso! --------")
 
     def listar_eleitores(self):
-        lista_eleitores = self.__geral_controller.eleitor_controller.listar_eleitores()
+        lista_eleitores = super().geral_controller.eleitor_controller.listar_eleitores()
 
         print("-----------------")
         print("Listando eleitores cadastrados")
@@ -66,14 +61,6 @@ class Eleitor_view:
                   "Número da Seção Eleitoral: " + lista_eleitores[i].secao)
 
         print("-----------------")
-
-    @property
-    def geral_controller(self):
-        return self.__geral_controller
-
-    @geral_controller.setter
-    def geral_controller(self, geral_controller):
-        self.__geral_controller = geral_controller
 
     @property
     def texto_codigo_e(self):
