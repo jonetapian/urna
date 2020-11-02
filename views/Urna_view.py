@@ -1,5 +1,5 @@
 class Urna_view:
-
+    
     def __init__(self, geral_controller):
         self.__geral_controller = geral_controller
 
