@@ -10,6 +10,7 @@ class Voto_controller():
     
     def listar_votos(self):
         return self.lista_votos
+    
 
     
         
