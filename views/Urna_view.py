@@ -1,4 +1,5 @@
 from views.Geral_view import Geral_view
+from utils.Validacao import *
 
 class Urna_view(Geral_view):
 
@@ -18,14 +19,22 @@ class Urna_view(Geral_view):
             self.listar_urnas()
         elif (opcao_escolhida == 5):
             self.listar_eleitor_por_secao()
+        elif (opcao_escolhida == 0):
+            return
 
     def incluir_urna(self):
-        self.__texto_codigo_u = int(input("Digite o código da Urna: "))
+        self.__texto_codigo_u = validar_campo_digito("da Urna: ")
         self.__texto_estado_federativo = (input("Digite a sigla do Estado: "))
         self.__texto_municipio = (input("Digite o nome do município: "))
-        self.__texto_zona_eleitoral = (input("Digite o número da Zona Eleitoral: "))
-        self.__texto_secao_eleitoral = int(input("Digite o número da Seção Eleitoral: "))
-        self.__texto_turno = (input("Digite o Turno: "))
+        self.__texto_zona_eleitoral = validar_campo_digito("da Zona Eleitoral: ")
+        self.__texto_secao_eleitoral = validar_campo_digito("da Seção Eleitoral: ")
+        texto_valido = False
+        while texto_valido == False:
+            self.__texto_turno = (input("Digite 1 para o primeiro turno e 2 para o segundo turno: "))
+            if self.__texto_turno == "1" or self.__texto_turno == "2":
+                texto_valido = True
+            else:
+                print("Informe novamente um Turno válido! ")
         self.__texto_data_homolgacao = (input("Digite a data da homolagação: "))
         self.__texto_data_encerramento = (input("Digite a data de encerramento: "))
 
@@ -35,14 +44,23 @@ class Urna_view(Geral_view):
 
         print("-------- Urna cadastrada com sucesso! --------")
 
+        self.tela_opcoes_urna()
+
     def alterar_urna(self):
-        self.__texto_codigo_u_alteracao = int(input("Digite o código da Urna para alteração: "))
+        self.__texto_codigo_u_alteracao = validar_campo_digito("do Código da Urna para Alteração: ")
         print("Favor informar todos os novos dados da Urna: ")
         self.__texto_estado_federativo = (input("Digite a sigla do Estado: "))
         self.__texto_municipio = (input("Digite o nome do município: "))
-        self.__texto_zona_eleitoral = (input("Digite o número da Zona Eleitoral: "))
-        self.__texto_secao_eleitoral = int((input("Digite o número da Seção Eleitoral: ")))
-        self.__texto_turno = (input("Digite o Turno: "))
+        self.__texto_zona_eleitoral = validar_campo_digito("da Zona Eleitoral: ")
+        self.__texto_secao_eleitoral = validar_campo_digito("da Seção Eleitoral: ")
+        texto_valido = False
+        while texto_valido == False:
+            self.__texto_turno = (input("Digite 1 para o primeiro turno e 2 para o segundo turno: "))
+            if self.__texto_turno == "1" or self.__texto_turno == "2":
+                texto_valido = True
+            else:
+                print("Informe novamente um Turno válido! ")
+
         self.__texto_data_homolgacao = (input("Digite a data da homolagação: "))
         self.__texto_data_encerramento = (input("Digite a data de encerramento: "))
 
@@ -53,7 +71,8 @@ class Urna_view(Geral_view):
         print("------- Urna alterada com sucesso! -------")
 
     def excluir_urna(self):
-        self.__texto_codigo_u = int(input("Informe o código da urna a ser excluída: "))
+
+        self.__texto_codigo_u = validar_campo_digito("da Urna a ser excluída: ")
 
         super().geral_controller.urna_controller.excluir_urna(self.__texto_codigo_u )
 

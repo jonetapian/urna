@@ -11,6 +11,9 @@ class Geral_view:
         print("4: Listar urnas")
         if tipo_view == "Urna":
             print("5: Listar eleitores por seção")
+        print("0: Voltar para o menu principal")
+        print ("----------------------------")
+
 
         return int(input("Escolha a opção para " + tipo_view + ": "))
 
