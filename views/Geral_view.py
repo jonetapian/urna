@@ -9,6 +9,9 @@ class Geral_view:
         print("2: Alterar")
         print("3: Excluir")
         print("4: Listar")
+        print("0: Voltar para o menu principal")
+        print ("----------------------------")
+
 
         return int(input("Escolha a opção para " + tipo_view + ": "))
 
