@@ -1,3 +1,4 @@
+from utils.Validacao import *
 class Geral_view:
 
     def __init__(self, geral_controller):
@@ -8,14 +9,14 @@ class Geral_view:
         print("1: Incluir")
         print("2: Alterar")
         print("3: Excluir")
-        print("4: Listar urnas")
+        print("4: Listar")
         if tipo_view == "Urna":
             print("5: Listar eleitores por seção")
         print("0: Voltar para o menu principal")
         print ("----------------------------")
 
 
-        return int(input("Escolha a opção para " + tipo_view + ": "))
+        return  validar_campo_digito("da escolha para o menu " + tipo_view + " :" )  
 
     @property
     def geral_controller(self):

@@ -13,7 +13,8 @@ class Partido_controller:
         novo_partido = Partido(codigo_p_alteracao, nome, sigla, numero)
         for i in range(len(self.lista_partidos)):
             if self.lista_partidos[i].codigo_p == codigo_p_alteracao:
-                self.lista_partidos[i] == novo_partido
+                self.lista_partidos.pop(i)
+                self.lista_partidos.insert(i, novo_partido)
 
     def excluir_partido(self,codigo_p):
         for i in range(len(self.lista_partidos)):
