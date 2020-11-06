@@ -19,8 +19,21 @@ class Candidato_view(Geral_view):
 
     def incluir_candidato(self):
         self.__texto_codigo_c = int(input("Digite o código para o Candidato: "))
+        if self.__texto_codigo_c < 1 or self.__texto_codigo_c > 98:
+            print("Apenas numeros de 01 a 98 são validos")
+            self.incluir_candidato()
         self.__texto_nome = (input("Digite o nome do Candidato: "))
-        self.__texto_codigo_partido = int(input("Digite o código do partido do Candidato: "))
+        partido_valido = False
+        while partido_valido == False:
+            print("Cadastre um partido para o candidato")
+            print("Os partidos cadastrados são")
+            for partido in super().geral_controller.partido_controller.listar_partidos():
+                print("Nome - " + partido.nome + " - numero - " + str(partido.numero ))
+            self.__texto_codigo_partido = int(input("Digite o código do partido do Candidato: "))
+            partido = super().geral_controller.partido_controller.consultar_partido(self.__texto_codigo_partido)
+            if  partido != None:
+                partido_valido = True
+                
         self.__texto_cargo = (input("Digite o cargo do Candidato: "))
 
         super().geral_controller.candidato_controller.incluir_candidato(self.__texto_codigo_c, self.__texto_nome, self.__texto_codigo_partido,

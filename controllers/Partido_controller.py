@@ -23,7 +23,8 @@ class Partido_controller:
     def listar_partidos(self):
         return self.lista_partidos
 
-    def consultar_partido(self,codigo_p):
-        for i in range(len(self.lista_partidos)):
-            if self.lista_partidos[i].codigo_p == codigo_p:
-                return self.lista_partidos[i]
+    def consultar_partido(self, numero_partido):
+        for partido in self.lista_partidos:
+            if partido.numero == numero_partido:
+                return partido
+        return None

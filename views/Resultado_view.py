@@ -12,10 +12,10 @@ class Resultado_view:
             lista_votos = self.__geral_controller.voto_controller.listar_votos()
             resultados = self.__geral_controller.resultado_controller.listar_votos_por_prefeito(lista_prefeitos, lista_votos)
             for resultado in resultados:
-                print("Nome - " + resultado.candidato.nome + " Numero de votos -" + str(resultado.numero_de_votos))
+                print("Nome - " + resultado.candidato.nome + "-- Numero de votos - " + str(resultado.numero_de_votos))
         elif opcao == 2:
             lista_vereadores = self.__geral_controller.candidato_controller.listar_vereadores()
             lista_votos = self.__geral_controller.voto_controller.listar_votos()
             resultados = self.__geral_controller.resultado_controller.listar_votos_por_vereador(lista_vereadores, lista_votos)
             for resultado in resultados:
-                print("Nome - " + resultado.candidato.nome + " Numero de votos -" + str(resultado.numero_de_votos))
+                print("Nome - " + resultado.candidato.nome + "-- Numero de votos - " + str(resultado.numero_de_votos))

@@ -27,3 +27,15 @@ class Urna_controller:
         for i in range(len(self.lista_urnas)):
             if self.lista_urnas[i].codigo_u == codigo_u:
                 return self.lista_urnas[i]
+
+    def consultar_urna_por_secao(self, secao):
+        for urna in self.lista_urnas:
+            if urna.secao == secao:
+                return urna
+        return None
+
+    def secao_existe(self, secao_eleitoral):
+        for urna in self.lista_urnas:
+            if  urna.secao == secao_eleitoral:
+                return True
+        return False

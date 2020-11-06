@@ -16,13 +16,15 @@ class Urna_view(Geral_view):
             self.excluir_urna()
         elif (opcao_escolhida == 4):
             self.listar_urnas()
+        elif (opcao_escolhida == 5):
+            self.listar_eleitor_por_secao()
 
     def incluir_urna(self):
         self.__texto_codigo_u = int(input("Digite o código da Urna: "))
         self.__texto_estado_federativo = (input("Digite a sigla do Estado: "))
         self.__texto_municipio = (input("Digite o nome do município: "))
         self.__texto_zona_eleitoral = (input("Digite o número da Zona Eleitoral: "))
-        self.__texto_secao_eleitoral = (input("Digite o número da Seção Eleitoral: "))
+        self.__texto_secao_eleitoral = int(input("Digite o número da Seção Eleitoral: "))
         self.__texto_turno = (input("Digite o Turno: "))
         self.__texto_data_homolgacao = (input("Digite a data da homolagação: "))
         self.__texto_data_encerramento = (input("Digite a data de encerramento: "))
@@ -39,7 +41,7 @@ class Urna_view(Geral_view):
         self.__texto_estado_federativo = (input("Digite a sigla do Estado: "))
         self.__texto_municipio = (input("Digite o nome do município: "))
         self.__texto_zona_eleitoral = (input("Digite o número da Zona Eleitoral: "))
-        self.__texto_secao_eleitoral = (input("Digite o número da Seção Eleitoral: "))
+        self.__texto_secao_eleitoral = int((input("Digite o número da Seção Eleitoral: ")))
         self.__texto_turno = (input("Digite o Turno: "))
         self.__texto_data_homolgacao = (input("Digite a data da homolagação: "))
         self.__texto_data_encerramento = (input("Digite a data de encerramento: "))
@@ -72,6 +74,27 @@ class Urna_view(Geral_view):
             print("Data da Homologação: " + lista_urnas[i].data_homolgacao)
             print("Data do Encerramento: " + lista_urnas[i].data_encerramento)
         print("-----------------")
+    
+    def listar_eleitor_por_secao(self):
+        if len(super().geral_controller.urna_controller.listar_urnas()) > 0:
+            print("Qual o codígo da seção ? ")
+            secao_eleitoral = int(input("Digite a seção : "))
+            secao_existe = super().geral_controller.urna_controller.secao_existe(secao_eleitoral)
+            if secao_existe == False:
+                print("Por favor insira um codigo valido")
+                self.listar_eleitor_por_secao()
+            else:
+                lista_eleitores = super().geral_controller.eleitor_controller.listar_eleitor_por_secao(secao_eleitoral)
+                if lista_eleitores != None: 
+                    print("-----------------")
+                    print("Listando Eleitores da seção - " + str(secao_eleitoral))
+                    for eleitor in lista_eleitores:
+                        print("Eleitor : " +  eleitor.nome)
+                else:
+                    print("Não há eleitores cadastrados nessa seção")
+                print("-----------------")
+        else:
+            print("Por favor adicione uma urna")
 
     @property
     def texto_codigo_u(self):

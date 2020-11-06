@@ -3,11 +3,23 @@ class Voto_view():
         self.__geral_controller = geral_controller
     
     def tela_opcoes_voto(self):
-        print("Inicio de votação")
-        opcao_vereador = self.votar_vereador()
-        opcao_prefeito = self.votar_prefeito()
-        self.__geral_controller.voto_controller.incluir_voto(opcao_vereador, opcao_prefeito)
-        print("Fim da votação")
+        urna = self.buscar_urna_por_secao()
+        if urna != None:
+            if urna.data_homolagacao != None:
+                print("Inicio de votação")
+                opcao_vereador = self.votar_vereador()
+                opcao_prefeito = self.votar_prefeito()
+                self.__geral_controller.voto_controller.incluir_voto(opcao_vereador, opcao_prefeito, urna.codigo_u)
+                print("Fim da votação")
+            else:
+                print("data da homologação não existe")
+        else:
+            print("Por favor digite uma seção valida")
+            self.tela_opcoes_voto()
+
+    def buscar_urna_por_secao(self):
+        secao = int(input("Digite a sua seção eleitoral : "))
+        return self.__geral_controller.urna_controller.consultar_urna_por_secao(secao)
     def votar_vereador(self):
         self.listar_vereadores()
         opcao_vereador = int(input("Escolha a opção para votar: "))

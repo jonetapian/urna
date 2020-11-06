@@ -21,7 +21,7 @@ class Partido_view(Geral_view):
         self.__texto_codigo_p = int(input("Digite o código para o Partido: "))
         self.__texto_nome = (input("Digite o nome do Partido: "))
         self.__texto_sigla = (input("Digite a sigla do Partido: "))
-        self.__texto_numero = (input("Digite o número do Partido: "))
+        self.__texto_numero = int(input("Digite o número do Partido: "))
 
         super().geral_controller.partido_controller.incluir_partido(self.__texto_codigo_p, self.__texto_nome, self.__texto_sigla, self.__texto_numero)
 
