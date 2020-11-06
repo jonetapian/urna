@@ -13,7 +13,8 @@ class Candidato_controller:
         novo_candidato = Candidato(codigo_c_alteracao, nome, codigo_partido, cargo)
         for i in range(len(self.lista_candidatos)):
             if self.lista_candidatos[i].codigo_c == codigo_c_alteracao:
-                self.lista_candidatos[i] == novo_candidato
+                self.lista_candidatos.pop(i)
+                self.lista_candidatos.insert(i, novo_candidato)
 
     def excluir_candidato(self, codigo_c):
         for i in range(len(self.lista_candidatos)):

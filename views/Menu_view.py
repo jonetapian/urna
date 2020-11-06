@@ -5,6 +5,7 @@ from views.Eleitor_view import Eleitor_view
 from controllers.Geral_controller import Geral_controller
 from views.Voto_view import Voto_view
 from views.Resultado_view import Resultado_view
+from utils.Validacao import *
 class Menu_view:
 
     def __init__(self):
@@ -25,7 +26,7 @@ class Menu_view:
         print("6: Resultado")
         print("0: Sair")
 
-        opcao_escolhida = int(input("Escolha a opção: "))
+        opcao_escolhida = validar_campo_digito("da escolha :")
 
         if (opcao_escolhida == 1):
             self.__urna_view.tela_opcoes_urna()

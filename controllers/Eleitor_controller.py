@@ -13,7 +13,8 @@ class Eleitor_controller:
         novo_eleitor = Eleitor(codigo_e_alteracao, nome, nome_mae, numero_titulo, secao)
         for i in range(len(self.lista_eleitores)):
             if self.lista_eleitores[i].codigo_e == codigo_e_alteracao:
-                self.lista_eleitores[i] == novo_eleitor
+                self.lista_eleitores.pop(i)
+                self.lista_eleitores.insert(i, novo_eleitor)
 
     def excluir_eleitor(self, codigo_e):
         for i in range(len(self.lista_eleitores)):
@@ -22,6 +23,18 @@ class Eleitor_controller:
 
     def listar_eleitores(self):
         return self.lista_eleitores
+
+    def listar_eleitor_por_secao(self, secao_eleitoral):
+        lista_eleitores = self.lista_eleitores
+        lista_eleitores_selecionados = []
+        for eleitor in lista_eleitores:
+            if eleitor.secao == secao_eleitoral:
+                lista_eleitores_selecionados.append(eleitor)
+        if len(lista_eleitores_selecionados) > 0:
+            return lista_eleitores_selecionados
+        else:
+            return None
+    
 
     def consultar_eleitor(self, codigo_e):
         for i in range(len(self.lista_eleitores)):

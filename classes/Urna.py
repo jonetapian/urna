@@ -51,7 +51,7 @@ class Urna:
 
     @property
     def turno(self):
-        return self.turno
+        return self.__turno
     
     @turno.setter
     def turno(self,turno):

@@ -17,6 +17,8 @@ class Urna_view(Geral_view):
             self.excluir_urna()
         elif (opcao_escolhida == 4):
             self.listar_urnas()
+        elif (opcao_escolhida == 5):
+            self.listar_eleitor_por_secao()
         elif (opcao_escolhida == 0):
             return
 
@@ -81,16 +83,37 @@ class Urna_view(Geral_view):
 
         print("-----------------")
         print("Listando Urnas cadastradas")
-        for i in range(len(lista_urnas)):
-            print("Código Urna:", lista_urnas[i].codigo_u)
-            print("Estado Federativo Urna: " + lista_urnas[i].estado_federativo)
-            print("Município: " + lista_urnas[i].municipio)
-            print("Zona Eleitoral: " + lista_urnas[i].zona)
-            print("Seção Eleitoral: " + lista_urnas[i].secao)
-            print("Turno: " + lista_urnas[i].turno)
-            print("Data da Homologação: " + lista_urnas[i].data_homolgacao)
-            print("Data do Encerramento: " + lista_urnas[i].data_encerramento)
+        for urna in lista_urnas:
+            print("Código Urna:", urna.codigo_u)
+            print("Estado Federativo Urna: " + urna.estado_federativo)
+            print("Município: " + urna.munincipio)
+            print("Zona Eleitoral: " + str(urna.zona))
+            print("Seção Eleitoral: " + str(urna.secao))
+            print("Turno: " + str(urna.turno))
+            print("Data da Homologação: " + urna.data_homologacao)
+            print("Data do Encerramento: " + urna.data_encerramento)
         print("-----------------")
+    
+    def listar_eleitor_por_secao(self):
+        if len(super().geral_controller.urna_controller.listar_urnas()) > 0:
+            print("Qual o codígo da seção ? ")
+            secao_eleitoral = int(input("Digite a seção : "))
+            secao_existe = super().geral_controller.urna_controller.secao_existe(secao_eleitoral)
+            if secao_existe == False:
+                print("Por favor insira um codigo valido")
+                self.listar_eleitor_por_secao()
+            else:
+                lista_eleitores = super().geral_controller.eleitor_controller.listar_eleitor_por_secao(secao_eleitoral)
+                if lista_eleitores != None: 
+                    print("-----------------")
+                    print("Listando Eleitores da seção - " + str(secao_eleitoral))
+                    for eleitor in lista_eleitores:
+                        print("Eleitor : " +  eleitor.nome)
+                else:
+                    print("Não há eleitores cadastrados nessa seção")
+                print("-----------------")
+        else:
+            print("Por favor adicione uma urna")
 
     @property
     def texto_codigo_u(self):
