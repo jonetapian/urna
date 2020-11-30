@@ -1,17 +1,19 @@
 from views.Urna_view import Urna_view
-from views.Partido_view import Partido_view
 from views.Candidato_view import Candidato_view
 from views.Eleitor_view import Eleitor_view
 from controllers.Geral_controller import Geral_controller
 from views.Voto_view import Voto_view
 from views.Resultado_view import Resultado_view
 from utils.Validacao import *
+from views.partido.Partido_consulta_view import Partido_consulta_view
+
+
 class Menu_view:
 
     def __init__(self):
         self.__geral_controller = Geral_controller()
         self.__urna_view = Urna_view(self.__geral_controller)
-        self.__partido_view = Partido_view(self.__geral_controller)
+        self.__partido_consulta_view = Partido_consulta_view()
         self.__candidato_view = Candidato_view(self.__geral_controller)
         self.__eleitor_view = Eleitor_view(self.__geral_controller)
         self.__voto_view = Voto_view(self.__geral_controller)
@@ -31,7 +33,7 @@ class Menu_view:
         if (opcao_escolhida == 1):
             self.__urna_view.tela_opcoes_urna()
         elif (opcao_escolhida == 2):
-            self.__partido_view.tela_opcoes_partido()
+            self.__partido_consulta_view.abrir_tela()
         elif (opcao_escolhida == 3):
             self.__candidato_view.tela_opcoes_candidato()
         elif (opcao_escolhida == 4):
@@ -60,12 +62,12 @@ class Menu_view:
         self.__urna_view = urna_view
 
     @property
-    def partido_view(self):
-        return self.__partido_view
+    def partido_consulta_view(self):
+        return self.__partido_consulta_view
 
-    @partido_view.setter
-    def partido_view(self, partido_view):
-        self.__partido_view = partido_view
+    @partido_consulta_view.setter
+    def partido_consulta_view(self, partido_consulta_view):
+        self.__partido_consulta_view = partido_consulta_view
 
     @property
     def candidato_view(self):
