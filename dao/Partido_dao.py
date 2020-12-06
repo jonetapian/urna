@@ -23,7 +23,8 @@ class Partido_dao(Abstract_dao):
         lista_partidos_string = []
 
         for partido in lista_partidos:
-            partido_string = partido.codigo_p + " - " + partido.nome + " - " +  partido.sigla + " - " +  partido.numero
-            lista_partidos_string.append(partido_string)
+            if (partido.codigo_p != None):
+                partido_string = str(partido.codigo_p) + " - " + partido.nome + " - " +  partido.sigla + " - " +  str(partido.numero)
+                lista_partidos_string.append(partido_string)
 
         return lista_partidos_string
