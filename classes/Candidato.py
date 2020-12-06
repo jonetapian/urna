@@ -31,3 +31,6 @@ class Candidato(Pessoa):
     @cargo.setter
     def cargo(self, cargo):
         self.__cargo = cargo
+
+
+        ## codigo partido vira partido , vai receber o objeto nao o codigoss
