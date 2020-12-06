@@ -1,15 +1,15 @@
 from classes.Voto import Voto
-
+from dao.Voto_dao import Voto_dao
 class Voto_controller():
     def __init__(self):
-        self.lista_votos = []
+        self.voto_dao = Voto_dao()
 
     def incluir_voto(self, numero_vereador, numero_prefeito, codigo_u):
         voto = Voto(numero_vereador, numero_prefeito, codigo_u)
-        self.lista_votos.append(voto)
+        self.voto_dao.add(voto)
     
     def listar_votos(self):
-        return self.lista_votos
+        return self.voto_dao.get_all()
     
 
     

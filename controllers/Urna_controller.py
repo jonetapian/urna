@@ -1,16 +1,17 @@
 from classes.Urna import Urna
-
+from dao.Urna_dao import Urna_dao
 class Urna_controller:
 
     def __init__(self):
-        self.lista_urnas = []
+        self.urna_dao = Urna_dao()
     
     def incluir_urna(self, codigo_u, estado_federativo, munincipio, zona, secao, turno, data_homologacao, data_encerramento):
         nova_urna = Urna(codigo_u, estado_federativo, munincipio, zona, secao, turno, data_homologacao, data_encerramento)
-        self.lista_urnas.append(nova_urna)
+        self.urna_dao.add(nova_urna)
 
     def alterar_urna(self, codigo_u_alteracao, estado_federativo, munincipio, zona, secao, turno, data_homologacao, data_encerramento ):
         nova_urna = Urna(codigo_u_alteracao, estado_federativo, munincipio, zona, secao, turno, data_homologacao, data_encerramento)
+        
         for i in range(len(self.lista_urnas)):
             if self.lista_urnas[i].codigo_u == codigo_u_alteracao:
                 self.lista_urnas.pop(i)

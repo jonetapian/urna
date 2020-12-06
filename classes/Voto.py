@@ -1,9 +1,17 @@
-from classes.CodigoUrna import CodigoUrna
-class Voto(CodigoUrna):
-    def __init__(self, numero_vereador, numero_prefeito, codigo_u):
-        super().__init__(codigo_u)
+
+class Voto():
+    def __init__(self,codigo_v, numero_vereador, numero_prefeito, codigo_u):
+        self.__codigo_v = codigo_v
         self.__numero_vereador = numero_vereador
         self.__numero_prefeito = numero_prefeito
+
+    @property
+    def codigo_v(self):
+        return self.__codigo_v
+
+    @codigo_v.setter
+    def codigo_v(self, codigo_v):
+        self.codigo_v = codigo_v
     @property
     def numero_vereador(self):
         return self.__numero_vereador
