@@ -1,3 +1,4 @@
+import PySimpleGUI as sg
 from views.Urna_view import Urna_view
 from views.Candidato_view import Candidato_view
 from views.Eleitor_view import Eleitor_view
@@ -17,33 +18,37 @@ class Menu_view:
         self.__candidato_view = Candidato_view(self.__geral_controller)
         self.__eleitor_view = Eleitor_view(self.__geral_controller)
         self.__voto_view = Voto_view(self.__geral_controller)
-        self.__resultado_vieww = Resultado_view(self.geral_controller)
+        self.__resultado_view = Resultado_view(self.geral_controller)
+
+        layout = [
+            [sg.Text('OPÇÕES')],
+            [sg.Button("URNA")],
+            [sg.Button("PARTIDO")],
+            [sg.Button("CANDIDATO")],
+            [sg.Button("ELEITOR")],
+            [sg.Button("VOTO")],
+            [sg.Button("RESULTADO")],
+            [sg.Button("SAIR")]
+        ]
+        self.__window = sg.Window('OPÇÕES').Layout(layout)
+
     def tela_opcoes(self):
-        print("Escolha a opção")
-        print("1: Urna")
-        print("2: Partido")
-        print("3: Candidato")
-        print("4: Eleitor")
-        print("5: Voto")
-        print("6: Resultado")
-        print("0: Sair")
-
-        opcao_escolhida = validar_campo_digito("da escolha :")
-
-        if (opcao_escolhida == 1):
+        button, values = self.__window.Read()
+        if (button == "URNA"):
             self.__urna_view.tela_opcoes_urna()
-        elif (opcao_escolhida == 2):
+        elif (button == "PARTIDO"):
             self.__partido_consulta_view.abrir_tela()
-        elif (opcao_escolhida == 3):
+        elif (button == "CANDIDATO"):
             self.__candidato_view.tela_opcoes_candidato()
-        elif (opcao_escolhida == 4):
+        elif (button == "ELEITOR"):
             self.__eleitor_view.tela_opcoes_eleitor()
-        elif (opcao_escolhida == 5):
+        elif (button == "VOTO"):
             self.__voto_view.tela_opcoes_voto()
-        elif (opcao_escolhida == 6):
-            self.__resultado_vieww.tela_opcoes_resultado()
-    def sair(self):
-        exit(0)
+        elif (button == "RESULTADO"):
+            self.__resultado_view.tela_opcoes_resultado()
+        elif (button == sg.WIN_CLOSED or button == 'SAIR'):
+            return "SAIR"
+
 
     @property
     def geral_controller(self):

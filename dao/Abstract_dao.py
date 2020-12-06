@@ -19,7 +19,7 @@ class Abstract_dao(ABC):
 
     def add(self, key, obj):
         self.__cache[key] = obj
-        self.__dump ()
+        self.__dump()
 
     def get(self, key):
         try:
@@ -30,7 +30,7 @@ class Abstract_dao(ABC):
     def remove(self, key):
         try:
             self.__cache.pop(key)
-            self.__dump ()
+            self.__dump()
         except KeyError:
             pass
 

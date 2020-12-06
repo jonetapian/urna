@@ -17,3 +17,13 @@ class Partido_dao(Abstract_dao):
     def remove(self, key: int):
         if isinstance(key, int):
             return super().remove(key)
+
+    def get_all(self):
+        lista_partidos = super().get_all()
+        lista_partidos_string = []
+
+        for partido in lista_partidos:
+            partido_string = partido.codigo_p + " - " + partido.nome + " - " +  partido.sigla + " - " +  partido.numero
+            lista_partidos_string.append(partido_string)
+
+        return lista_partidos_string
