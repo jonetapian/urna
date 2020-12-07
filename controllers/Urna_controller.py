@@ -4,40 +4,39 @@ class Urna_controller:
 
     def __init__(self):
         self.urna_dao = Urna_dao()
-    
-    def incluir_urna(self, codigo_u, estado_federativo, munincipio, zona, secao, turno, data_homologacao, data_encerramento):
+
+    def salvar_urna(self, codigo_u, estado_federativo, munincipio, zona, secao, turno, data_homologacao, data_encerramento):
         nova_urna = Urna(codigo_u, estado_federativo, munincipio, zona, secao, turno, data_homologacao, data_encerramento)
         self.urna_dao.add(nova_urna)
 
-    def alterar_urna(self, codigo_u_alteracao, estado_federativo, munincipio, zona, secao, turno, data_homologacao, data_encerramento ):
-        nova_urna = Urna(codigo_u_alteracao, estado_federativo, munincipio, zona, secao, turno, data_homologacao, data_encerramento)
-        
-        for i in range(len(self.lista_urnas)):
-            if self.lista_urnas[i].codigo_u == codigo_u_alteracao:
-                self.lista_urnas.pop(i)
-                self.lista_urnas.insert(i, nova_urna)
-
-    def excluir_urna(self, codigo_u):
-        for i in range(len(self.lista_urnas)):
-            if self.lista_urnas[i].codigo_u == codigo_u:
-                self.lista_urnas.pop(i)
+    def excluir_urna(self,codigo_u):
+        self.urna_dao.remove(codigo_u)
 
     def listar_urnas(self):
-        return self.lista_urnas
+        return self.urna_dao.get_all()
+
+    def listar_urnas_como_str(self):
+        lista_urnas = self.listar_urnas()
+        lista_urnas_string = []
+        for urna in lista_urnas:
+            urna_string = str(urna.codigo_u) + " - " + urna.estado_federativo + " - " +  urna.munincipio + " - " + urna.zona + " - " + urna.secao + " - " + urna.turno + " - " + urna.data_homologacao + " - " + urna.data_encerramento    
+            lista_urnas_string.append(urna_string)
+
+        return lista_urnas_string
 
     def consultar_urna(self, codigo_u):
-        for i in range(len(self.lista_urnas)):
-            if self.lista_urnas[i].codigo_u == codigo_u:
-                return self.lista_urnas[i]
+        return self.urna_dao.get(codigo_u)
 
     def consultar_urna_por_secao(self, secao):
-        for urna in self.lista_urnas:
+        lista_urnas = self.listar_urnas()
+        for urna in lista_urnas:
             if urna.secao == secao:
                 return urna
         return None
 
     def secao_existe(self, secao_eleitoral):
-        for urna in self.lista_urnas:
+        lista_urnas = self.listar_urnas()
+        for urna in lista_urnas:
             if  urna.secao == secao_eleitoral:
                 return True
         return False

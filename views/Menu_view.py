@@ -7,17 +7,18 @@ from views.Voto_view import Voto_view
 from views.Resultado_view import Resultado_view
 from utils.Validacao import *
 from views.partido.Partido_consulta_view import Partido_consulta_view
-
-
+from views.urna.Urna_consulta_view import Urna_consulta_view
+from views.urna.Urna_consulta_view import Urna_consulta_view
+from views.voto.Voto_view import Voto_view
 class Menu_view:
 
     def __init__(self):
         self.__geral_controller = Geral_controller()
-        self.__urna_view = Urna_view(self.__geral_controller)
+        self.__urna_view = Urna_consulta_view()
         self.__partido_consulta_view = Partido_consulta_view()
         self.__candidato_view = Candidato_view(self.__geral_controller)
         self.__eleitor_view = Eleitor_view(self.__geral_controller)
-        self.__voto_view = Voto_view(self.__geral_controller)
+        self.__voto_view = Voto_view()
         self.__resultado_view = Resultado_view(self.geral_controller)
 
         layout = [
@@ -35,7 +36,7 @@ class Menu_view:
     def tela_opcoes(self):
         button, values = self.__window.Read()
         if (button == "URNA"):
-            self.__urna_view.tela_opcoes_urna()
+            self.__urna_view.abrir_tela()
         elif (button == "PARTIDO"):
             self.__partido_consulta_view.abrir_tela()
         elif (button == "CANDIDATO"):
@@ -43,7 +44,7 @@ class Menu_view:
         elif (button == "ELEITOR"):
             self.__eleitor_view.tela_opcoes_eleitor()
         elif (button == "VOTO"):
-            self.__voto_view.tela_opcoes_voto()
+            self.__voto_view.abrir_tela()
         elif (button == "RESULTADO"):
             self.__resultado_view.tela_opcoes_resultado()
         elif (button == sg.WIN_CLOSED or button == 'SAIR'):

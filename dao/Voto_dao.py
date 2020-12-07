@@ -8,7 +8,8 @@ class Voto_dao(Abstract_dao):
 
     def add(self, voto: Voto):
         if (voto is not None):
-            super().add(voto.codigo_v, voto)
+            len_votos = len(super().cache)
+            super().add(len_votos + 1, voto)
 
     def get(self, key: int):
         if isinstance(key, int):
@@ -18,12 +19,4 @@ class Voto_dao(Abstract_dao):
         if isinstance(key, int):
             return super().remove(key)
 
-    def get_all(self):
-        lista_votos = super().get_all()
-        lista_votos_string = []
 
-        for voto in lista_votos:
-            voto_string = voto.codigo_v + " - " + voto.numero_vereador + " - " +  voto.numero_prefeito
-            lista_votos_string.append(voto_string)
-
-        return lista_votos_string

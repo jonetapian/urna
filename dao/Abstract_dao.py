@@ -36,3 +36,10 @@ class Abstract_dao(ABC):
 
     def get_all(self):
         return self.__cache.values()
+
+    @property
+    def cache(self):
+        return self.__cache
+    @cache.setter
+    def cache(self, cache): 
+        self.__cache = cache

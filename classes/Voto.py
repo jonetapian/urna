@@ -1,17 +1,17 @@
 
 class Voto():
-    def __init__(self,codigo_v, numero_vereador, numero_prefeito, codigo_u):
-        self.__codigo_v = codigo_v
+    def __init__(self, numero_vereador, numero_prefeito, codigo_u):
+        self.__codigo_u = codigo_u
         self.__numero_vereador = numero_vereador
         self.__numero_prefeito = numero_prefeito
 
     @property
-    def codigo_v(self):
-        return self.__codigo_v
+    def codigo_u(self):
+        return self.__codigo_u
 
-    @codigo_v.setter
-    def codigo_v(self, codigo_v):
-        self.codigo_v = codigo_v
+    @codigo_u.setter
+    def codigo_u(self, codigo_u):
+        self.codigo_u = codigo_u
     @property
     def numero_vereador(self):
         return self.__numero_vereador
