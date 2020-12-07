@@ -6,7 +6,9 @@ from controllers.Geral_controller import Geral_controller
 from views.Voto_view import Voto_view
 from views.Resultado_view import Resultado_view
 from utils.Validacao import *
+from views.eleitor.Eleitor_consulta_view import Eleitor_consulta_view
 from views.partido.Partido_consulta_view import Partido_consulta_view
+from views.candidato.Candidato_consulta_view import Candidato_consulta_view
 
 
 class Menu_view:
@@ -15,8 +17,8 @@ class Menu_view:
         self.__geral_controller = Geral_controller()
         self.__urna_view = Urna_view(self.__geral_controller)
         self.__partido_consulta_view = Partido_consulta_view()
-        self.__candidato_view = Candidato_view(self.__geral_controller)
-        self.__eleitor_view = Eleitor_view(self.__geral_controller)
+        self.__candidato_consulta_view = Candidato_consulta_view()
+        self.__eleitor_consulta_view = Eleitor_consulta_view()
         self.__voto_view = Voto_view(self.__geral_controller)
         self.__resultado_view = Resultado_view(self.geral_controller)
 
@@ -39,9 +41,9 @@ class Menu_view:
         elif (button == "PARTIDO"):
             self.__partido_consulta_view.abrir_tela()
         elif (button == "CANDIDATO"):
-            self.__candidato_view.tela_opcoes_candidato()
+            self.__candidato_consulta_view.abrir_tela()
         elif (button == "ELEITOR"):
-            self.__eleitor_view.tela_opcoes_eleitor()
+            self.__eleitor_consulta_view.abrir_tela()
         elif (button == "VOTO"):
             self.__voto_view.tela_opcoes_voto()
         elif (button == "RESULTADO"):
@@ -75,12 +77,12 @@ class Menu_view:
         self.__partido_consulta_view = partido_consulta_view
 
     @property
-    def candidato_view(self):
-        return self.__candidato_view
+    def candidato_consulta_view(self):
+        return self.__candidato_consulta_view
 
-    @candidato_view.setter
-    def candidato_view(self, candidato_view):
-        self.__candidato_view = candidato_view
+    @candidato_consulta_view.setter
+    def candidato_consulta_view(self, candidato_consulta_view):
+        self.__candidato_consulta_view = candidato_consulta_view
 
     @property
     def eleitor_view(self):
