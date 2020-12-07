@@ -84,11 +84,14 @@ class Voto_view():
                     sg.popup("O número da seção deve ser um numero inteiro")
                     self.__window_secao['secao'].update('')
             elif (event == 'Submit'):
+                print(Geral_controller().urna_controller.secao_existe(int(values['secao'])))
                 if Geral_controller().urna_controller.secao_existe(int(values['secao'])) == False:
+                    sg.popup("Seção não encontrada")
                     self.__window_secao['secao'].update('')
-                self.secao = values['secao']
-                self.__window_secao.close()
-                break
+                else:
+                    self.secao = int(values['secao'])
+                    self.__window_secao.close()
+                    break
             elif (event == sg.WIN_CLOSED or event == None or event == 'Cancel'):
                 self.__window_secao.close()
                 break

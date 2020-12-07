@@ -19,7 +19,7 @@ class Urna_controller:
         lista_urnas = self.listar_urnas()
         lista_urnas_string = []
         for urna in lista_urnas:
-            urna_string = str(urna.codigo_u) + " - " + urna.estado_federativo + " - " +  urna.munincipio + " - " + urna.zona + " - " + urna.secao + " - " + urna.turno + " - " + urna.data_homologacao + " - " + urna.data_encerramento    
+            urna_string = str(urna.codigo_u) + " - " + urna.estado_federativo + " - " +  urna.munincipio + " - " + str(urna.zona) + " - " + str(urna.secao) + " - " + urna.turno + " - " + urna.data_homologacao + " - " + urna.data_encerramento    
             lista_urnas_string.append(urna_string)
 
         return lista_urnas_string

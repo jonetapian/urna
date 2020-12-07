@@ -17,13 +17,16 @@ class Resultado_controller:
             for resultado in resultados:
                 if resultado.candidato.partido.codigo_p == partido.codigo_p:
                     votos_validos_partido += resultado.numero_de_votos
-            quociente_eleitoral = round(total_votos_validos / 3)
-            quociente_partidario = round(votos_validos_partido / quociente_eleitoral)
+            num_quociente_eleitoral = round(total_votos_validos / 3)
+            quociente_partidario = round(votos_validos_partido / num_quociente_eleitoral)
+            if quociente_partidario < 1 :
+                quociente_partidario = 1
             lista_quociente.append(Coenciente_partidario(partido, quociente_partidario,0 ))
+            
             for resultado in resultados:
                 if resultado.candidato.partido.codigo_p == partido.codigo_p:
                     for quociente_eleitoral in lista_quociente:
-                        if quociente_eleitoral.partido.codigo_p == resultado.candidato.codigo_partido:
+                        if quociente_eleitoral.partido.codigo_p == resultado.candidato.partido.codigo_p:
                             if quociente_eleitoral.numero_maximo_eleitos > quociente_eleitoral.numero_atual_eleitos:
                                 lista_eleitos.append(resultado)
                                 quociente_eleitoral.numero_atual_eleitos += 1
@@ -34,7 +37,7 @@ class Resultado_controller:
         for candidato in lista_vereadores:
             numero_de_votos = 0
             for voto in lista_votos:
-                if voto.numero_vereador == candidato.codigo_c:
+                if voto.numero_vereador == candidato.numero_candidato:
                     numero_de_votos += 1
             resultado = Resultado(candidato, numero_de_votos)
             resultados.append(resultado)
@@ -46,7 +49,7 @@ class Resultado_controller:
         for candidato in lista_prefeitos:
             numero_de_votos = 0
             for voto in lista_votos:
-                if voto.numero_prefeito == candidato.codigo_c:
+                if voto.numero_prefeito == candidato.numero_candidato:
                     numero_de_votos += 1
             resultado = Resultado(candidato, numero_de_votos)
             resultados.append(resultado)

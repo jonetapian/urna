@@ -15,7 +15,12 @@ class Partido_controller:
         self.partido_dao.remove(codigo_p)
 
     def listar_partidos(self):
-        return self.partido_dao.get_all()
+        partidos = []
+        for partido in self.partido_dao.get_all():
+            partidos.append(partido)
+        return partidos
+
+
     def listar_partidos_como_str(self):
         return self.partido_dao.get_all_as_str()
 
