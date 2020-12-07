@@ -20,13 +20,15 @@ class Partido_cadastro_view():
 
             if (event == 'CODIGO_P'):
                 try:
-                    int(values['CODIGO_P'])
+                    if (values['CODIGO_P'] != ''):
+                        int(values['CODIGO_P'])
                 except:
                     sg.popup("O código do partido deve ser um número inteiro")
                     self.__window['CODIGO_P'].update('')
             elif (event == 'NUMERO_P'):
                 try:
-                    int(values['NUMERO_P'])
+                    if (values['NUMERO_P'] != ''):
+                        int(values['NUMERO_P'])
                 except:
                     sg.popup("O número do partido deve ser um número inteiro")
                     self.__window['NUMERO_P'].update('')
@@ -61,7 +63,8 @@ class Partido_cadastro_view():
 
             if (event == 'NUMERO_P'):
                 try:
-                    int(values['NUMERO_P'])
+                    if (values['NUMERO_P'] != ''):
+                        int(values['NUMERO_P'])
                 except:
                     sg.popup("O número do partido deve ser um número inteiro")
                     self.__window['NUMERO_P'].update(partido.numero)
