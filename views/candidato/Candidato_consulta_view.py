@@ -9,7 +9,7 @@ class Candidato_consulta_view():
 
     def abrir_tela(self):
         while True:
-            lista_candidatos = Geral_controller().candidato_controller.listar_candidatos()
+            lista_candidatos = Geral_controller().candidato_controller.listar_candidatos_como_str()
 
             layout = [
                 [sg.Text('CANDIDATOS')],

@@ -18,7 +18,7 @@ class Candidato_dao(Abstract_dao):
         if isinstance(key, int):
             return super().remove(key)
 
-    def get_all(self):
+    def get_all_as_str(self):
         lista_candidatos = super().get_all()
         lista_candidatos_string = []
 

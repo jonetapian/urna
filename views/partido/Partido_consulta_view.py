@@ -9,7 +9,7 @@ class Partido_consulta_view():
 
     def abrir_tela(self):
         while True:
-            lista_partidos = Geral_controller().partido_controller.listar_partidos()
+            lista_partidos = Geral_controller().partido_controller.listar_partidos_como_str()
 
             layout = [
                 [sg.Text('PARTIDOS')],

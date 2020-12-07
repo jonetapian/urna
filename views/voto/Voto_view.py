@@ -31,7 +31,7 @@ class Voto_view():
                         sg.popup("O número para votar deve ser um numero inteiro")
                         self.__window_prefeito['numero'].update('')
                 elif (event == 'Submit'):
-                    self.numero_prefeito = values['numero']
+                    self.numero_prefeito = int(values['numero'])
                     self.__window_prefeito.close()
                     break
                 elif (event == sg.WIN_CLOSED or event == None or event == 'Cancel'):
@@ -58,7 +58,7 @@ class Voto_view():
                         sg.popup("O número para votar deve ser um numero inteiro")
                         self.__window_vereador['numero'].update('')
                 elif (event == 'Submit'):
-                    self.numero_vereador = values['numero']
+                    self.numero_vereador = int(values['numero'])
                     self.__window_vereador.close()
                     break
                 elif (event == sg.WIN_CLOSED or event == None or event == 'Cancel'):
@@ -84,6 +84,8 @@ class Voto_view():
                     sg.popup("O número da seção deve ser um numero inteiro")
                     self.__window_secao['secao'].update('')
             elif (event == 'Submit'):
+                if Geral_controller().urna_controller.secao_existe(int(values['secao'])) == False:
+                    self.__window_secao['secao'].update('')
                 self.secao = values['secao']
                 self.__window_secao.close()
                 break

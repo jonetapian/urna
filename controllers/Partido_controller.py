@@ -16,6 +16,8 @@ class Partido_controller:
 
     def listar_partidos(self):
         return self.partido_dao.get_all()
+    def listar_partidos_como_str(self):
+        return self.partido_dao.get_all_as_str()
 
     def consultar_partido(self, codigo_partido):
         return self.partido_dao.get(codigo_partido)

@@ -4,14 +4,13 @@ from views.Candidato_view import Candidato_view
 from views.Eleitor_view import Eleitor_view
 from controllers.Geral_controller import Geral_controller
 from views.Voto_view import Voto_view
-from views.Resultado_view import Resultado_view
 from utils.Validacao import *
 from views.eleitor.Eleitor_consulta_view import Eleitor_consulta_view
 from views.partido.Partido_consulta_view import Partido_consulta_view
 from views.urna.Urna_consulta_view import Urna_consulta_view
 from views.voto.Voto_view import Voto_view
 from views.candidato.Candidato_consulta_view import Candidato_consulta_view
-
+from views.resultado.Resultado_view import Resultado_view
 
 class Menu_view:
 
@@ -21,8 +20,8 @@ class Menu_view:
         self.__partido_consulta_view = Partido_consulta_view()
         self.__candidato_consulta_view = Candidato_consulta_view()
         self.__eleitor_consulta_view = Eleitor_consulta_view()
-        self.__voto_view = Voto_view(self.__geral_controller)
-        self.__resultado_view = Resultado_view(self.geral_controller)
+        self.__voto_view = Voto_view()
+        self.__resultado_view = Resultado_view()
 
         layout = [
             [sg.Text('OPÇÕES')],
@@ -49,7 +48,7 @@ class Menu_view:
         elif (button == "VOTO"):
             self.__voto_view.abrir_tela()
         elif (button == "RESULTADO"):
-            self.__resultado_view.tela_opcoes_resultado()
+            self.__resultado_view.abrir_tela()
         elif (button == sg.WIN_CLOSED or button == 'SAIR'):
             return "SAIR"
 

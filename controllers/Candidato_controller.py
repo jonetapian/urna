@@ -1,7 +1,6 @@
 from classes.Candidato import Candidato
 from dao.Candidato_dao import Candidato_dao
 
-
 class Candidato_controller:
 
     def __init__(self):
@@ -16,6 +15,21 @@ class Candidato_controller:
 
     def listar_candidatos(self):
         return self.candidato_dao.get_all()
+    def listar_candidatos_como_str(self):
+        return self.candidato_dao.get_all_as_str()
 
+    def listar_prefeitos(self):
+        prefeitos = []
+        for candidato in self.listar_candidatos():
+            if candidato.cargo == "Prefeito":
+                prefeitos.append(candidato)
+        return prefeitos
+
+    def listar_vereadores(self):
+        vereadores = []
+        for candidato in self.listar_candidatos():
+            if candidato.cargo == "Vereador":
+                vereadores.append(candidato)
+        return vereadores
     def consultar_candidato(self, codigo_candidato):
         return self.candidato_dao.get(codigo_candidato)

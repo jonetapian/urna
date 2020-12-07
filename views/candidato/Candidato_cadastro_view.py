@@ -72,7 +72,8 @@ class Candidato_cadastro_view():
                         validou = True
 
                 if(validou):
-                    Geral_controller().candidato_controller.salvar_candidato(codigo_c, texto_nome, codigo_partido, texto_cargo, numero_candidato)
+                    partido = Geral_controller().partido_controller.consultar_partido(codigo_partido)
+                    Geral_controller().candidato_controller.salvar_candidato(codigo_c, texto_nome, partido, texto_cargo, numero_candidato)
                     self.__window.close()
                     break
             elif (event == sg.WIN_CLOSED or event == None or event == 'Cancel'):

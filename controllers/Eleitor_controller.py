@@ -16,5 +16,8 @@ class Eleitor_controller:
     def listar_eleitores(self):
         return self.eleitor_dao.get_all()
 
+    def listar_eleitores_como_str(self):
+        return self.eleitor_dao.get_all_as_str()
+
     def consultar_eleitor(self, codigo_eleitor):
         return self.eleitor_dao.get(codigo_eleitor)

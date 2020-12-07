@@ -9,7 +9,7 @@ class Eleitor_consulta_view():
 
     def abrir_tela(self):
         while True:
-            lista_eleitores = Geral_controller().eleitor_controller.listar_eleitores()
+            lista_eleitores = Geral_controller().eleitor_controller.listar_eleitores_como_str()
 
             layout = [
                 [sg.Text('ELEITORES')],
