@@ -1,51 +1,35 @@
 from classes.Candidato import Candidato
+from dao.Candidato_dao import Candidato_dao
 
 class Candidato_controller:
 
     def __init__(self):
-        self.lista_candidatos = []
+        self.candidato_dao = Candidato_dao()
 
-    def incluir_candidato(self, codigo_c, nome, codigo_partido, cargo):
-        novo_candidato = Candidato(codigo_c, nome, codigo_partido, cargo)
-        self.lista_candidatos.append(novo_candidato)
+    def salvar_candidato(self, codigo_c, nome, codigo_partido, cargo, numero_candidato):
+        novo_candidato = Candidato(codigo_c, nome, codigo_partido, cargo, numero_candidato)
+        self.candidato_dao.add(novo_candidato)
 
-    def alterar_candidato(self, codigo_c_alteracao, nome, codigo_partido, cargo):
-        novo_candidato = Candidato(codigo_c_alteracao, nome, codigo_partido, cargo)
-        for i in range(len(self.lista_candidatos)):
-            if self.lista_candidatos[i].codigo_c == codigo_c_alteracao:
-                self.lista_candidatos.pop(i)
-                self.lista_candidatos.insert(i, novo_candidato)
-
-    def excluir_candidato(self, codigo_c):
-        for i in range(len(self.lista_candidatos)):
-            if self.lista_candidatos[i].codigo_c == codigo_c:
-                self.lista_candidatos.pop(i)
+    def excluir_candidato(self,codigo_c):
+        self.candidato_dao.remove(codigo_c)
 
     def listar_candidatos(self):
-        return self.lista_candidatos
+        return self.candidato_dao.get_all()
+    def listar_candidatos_como_str(self):
+        return self.candidato_dao.get_all_as_str()
 
-    def consultar_candidato(self, codigo_c):
-        for i in range(len(self.lista_candidatos)):
-            if self.lista_candidatos[i].codigo_c == codigo_c:
-                return self.lista_candidatos[i]
-
-    def checar_se_existe(self,codigo_c):
-        for candidato in self.lista_candidatos:
-            if candidato.codigo_c == codigo_c:
-                return True
-        return False
+    def listar_prefeitos(self):
+        prefeitos = []
+        for candidato in self.listar_candidatos():
+            if candidato.cargo == "Prefeito":
+                prefeitos.append(candidato)
+        return prefeitos
 
     def listar_vereadores(self):
-        lista_vereadores = []
-        for candidato in self.lista_candidatos:
+        vereadores = []
+        for candidato in self.listar_candidatos():
             if candidato.cargo == "Vereador":
-                lista_vereadores.append(candidato)
-        return lista_vereadores
-    
-    
-    def listar_prefeitos(self):
-        lista_prefeitos = []
-        for candidato in self.lista_candidatos:
-            if candidato.cargo == "Prefeito":
-                lista_prefeitos.append(candidato)
-        return lista_prefeitos
+                vereadores.append(candidato)
+        return vereadores
+    def consultar_candidato(self, codigo_candidato):
+        return self.candidato_dao.get(codigo_candidato)

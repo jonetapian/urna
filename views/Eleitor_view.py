@@ -25,7 +25,7 @@ class Eleitor_view(Geral_view):
         self.__texto_nome_mae = (input("Digite o nome da mãe do eleitor: "))
         self.__texto_numero_titulo = validar_campo_digito("do título do eleitor: ")
         self.__texto_secao_eleitoral = validar_campo_digito("da seção eleitoral do eleitor: ")
-
+        ## fazer agregacao entre a secao do eleitor  com a urna 
         super().geral_controller.eleitor_controller.incluir_eleitor(self.__texto_codigo_e, self.__texto_nome, self.__texto_nome_mae,
                                                   self.__texto_numero_titulo, self.__texto_secao_eleitoral)
 

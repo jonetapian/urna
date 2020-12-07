@@ -4,7 +4,9 @@ from controllers.Candidato_controller import Candidato_controller
 from controllers.Eleitor_controller import Eleitor_controller
 from controllers.Voto_controller import Voto_controller
 from controllers.Resultado_controller import Resultado_controller
+
 class Geral_controller:
+    __instance = None
 
     def __init__(self):
         self.__urna_controller = Urna_controller()
@@ -13,6 +15,12 @@ class Geral_controller:
         self.__eleitor_controller = Eleitor_controller()
         self.__voto_controller = Voto_controller()
         self.__resultado_controller = Resultado_controller()
+
+    def __new__(cls):
+        if Geral_controller.__instance is None:
+            Geral_controller.__instance = object.__new__(cls)
+        return Geral_controller.__instance
+
     @property
     def urna_controller(self):
         return self.__urna_controller

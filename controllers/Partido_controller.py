@@ -1,31 +1,28 @@
 from classes.Partido import Partido
+from dao.Partido_dao import Partido_dao
+
 
 class Partido_controller:
 
     def __init__(self):
-        self.lista_partidos = []
-    
-    def incluir_partido(self, codigo_p, nome, sigla, numero):
-        novo_partido = Partido(codigo_p, nome, sigla, numero)
-        self.lista_partidos.append(novo_partido)
+        self.partido_dao = Partido_dao()
 
-    def alterar_partido(self,codigo_p_alteracao, nome, sigla, numero):
-        novo_partido = Partido(codigo_p_alteracao, nome, sigla, numero)
-        for i in range(len(self.lista_partidos)):
-            if self.lista_partidos[i].codigo_p == codigo_p_alteracao:
-                self.lista_partidos.pop(i)
-                self.lista_partidos.insert(i, novo_partido)
+    def salvar_partido(self, codigo_p, nome, sigla, numero):
+        novo_partido = Partido(codigo_p, nome, sigla, numero)
+        self.partido_dao.add(novo_partido)
 
     def excluir_partido(self,codigo_p):
-        for i in range(len(self.lista_partidos)):
-            if self.lista_partidos[i].codigo_p == codigo_p:
-                self.lista_partidos.pop(i)
+        self.partido_dao.remove(codigo_p)
 
     def listar_partidos(self):
-        return self.lista_partidos
+        partidos = []
+        for partido in self.partido_dao.get_all():
+            partidos.append(partido)
+        return partidos
 
-    def consultar_partido(self, numero_partido):
-        for partido in self.lista_partidos:
-            if partido.numero == numero_partido:
-                return partido
-        return None
+
+    def listar_partidos_como_str(self):
+        return self.partido_dao.get_all_as_str()
+
+    def consultar_partido(self, codigo_partido):
+        return self.partido_dao.get(codigo_partido)
